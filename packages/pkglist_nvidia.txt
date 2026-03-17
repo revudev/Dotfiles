@@ -1,0 +1,3 @@
+libva-nvidia-driver
+nvidia-open-dkms
+nvidia-settings

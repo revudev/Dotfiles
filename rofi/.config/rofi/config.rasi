@@ -1,0 +1,80 @@
+configuration {
+  modi: "drun,window,run";
+  show-icons: true;
+  icon-theme: "Papirus";
+  terminal: "alacritty";
+  drun-display-format: "{name}";
+  location: 0;
+  disable-history: false;
+  hide-scrollbar: true;
+  display-drun: " 🔍 Apps ";
+}
+
+@theme "/dev/null"
+
+* {
+  font: "JetBrainsMono Nerd Font 12";
+  bg: #0b1120;
+  fg: #e2e8f0;
+  accent: #1e293b;
+  button: #1e293b;
+
+  background-color: transparent;
+  text-color: @fg;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+window {
+  background-color: @bg;
+  width: 25%;
+  y-offset: 100px;
+  border: 0px;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+inputbar {
+  margin: 0px 0px 24px 0px;
+  children: [entry];
+}
+
+prompt {
+  padding: 0px 12px 0px 0px;
+  text-color: #ffffff;
+}
+
+entry {
+  text-color: #ffffff;
+}
+
+listview {
+  lines: 4;
+  columns: 1;
+  fixed-height: false;
+  spacing: 8px;
+  scrollbar: false;
+  border: 0px;
+}
+
+element {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 0px;
+}
+
+element selected {
+  background-color: @button;
+  text-color: #ffffff;
+}
+
+element-icon {
+  size: 24px;
+  padding: 0px 12px 0px 0px;
+}
+
+element-text {
+  vertical-align: 0.5;
+  text-color: inherit;
+}

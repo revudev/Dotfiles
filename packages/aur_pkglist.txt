@@ -1,0 +1,7 @@
+antigravity
+betterlockscreen
+brave-bin
+claude-code
+visual-studio-code-bin
+yay
+yay-debug

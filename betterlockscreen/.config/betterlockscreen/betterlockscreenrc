@@ -1,0 +1,41 @@
+# betterlockscreen configuration
+
+default_arg="blur"
+span_image=false
+time_format="%H:%M"
+date_format="%A, %d %B %Y"
+
+time_font="Inter:style=Light"
+date_font="Inter:style=Regular"
+
+time_size=80
+date_size=18
+
+time_color="ffffffff"
+date_color="ffffffcc"
+
+ring_color="1793d1ff"
+ring_width=6
+
+ringver_color="ffffff55"
+ringwrong_color="e55e5eff"
+
+keyhl_color="1793d1ff"
+bshl_color="e55e5eff"
+
+inside_color="00000055"
+insidever_color="00000055"
+insidewrong_color="e55e5e55"
+
+separator_color="00000000"
+
+veriftext_color="ffffffcc"
+wrongtext_color="ffffffcc"
+modiftext_color="ffffffff"
+
+blur_strength=4
+
+greetertext="Type password to unlock"
+greeter_color="ffffff99"
+greeter_font="Inter:style=Regular"
+greeter_size=14
