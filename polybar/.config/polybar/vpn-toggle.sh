@@ -9,14 +9,16 @@ fi
 
 active=$(sudo wg show interfaces 2>/dev/null)
 
-menu=""
+active_menu=""
+inactive_menu=""
 while IFS= read -r iface; do
   if echo "$active" | grep -qw "$iface"; then
-    menu+="󰦝 $iface\n"
+    active_menu+="󰦝 $iface\n"
   else
-    menu+="󰦞 $iface\n"
+    inactive_menu+="󰦞 $iface\n"
   fi
 done <<< "$available"
+menu="${active_menu}${inactive_menu}"
 
 chosen=$(printf "%b" "$menu" | rofi -dmenu -i -p " VPN")
 [ -z "$chosen" ] && exit 0
