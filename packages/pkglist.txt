@@ -47,6 +47,7 @@ rofi
 smartmontools
 stow
 sudo
+systemd-resolvconf
 thunar
 thunar-volman
 ttf-dejavu
@@ -57,6 +58,7 @@ tumbler
 usbutils
 vim
 wget
+wireguard-tools
 wireless_tools
 wireplumber
 woff2-font-awesome

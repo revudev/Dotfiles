@@ -74,6 +74,24 @@ Edit `~/.config/polybar/config.ini`:
 monitor = HDMI-0   # replace with your output name
 ```
 
+### Intel integrated GPU (picom)
+
+The default picom config uses `backend = "glx"` with `dual_kawase` blur. On Intel iGPU this
+usually works fine via the `i915` driver, but if you see tearing or crashes, try switching to
+the EGL backend (keeps blur):
+
+```
+backend = "egl";
+```
+
+If problems persist, fall back to `xrender` — note that `dual_kawase` blur is not supported
+with `xrender`, so you must also remove the blur block:
+
+```
+backend = "xrender";
+# remove blur-background, blur-method, blur-strength lines
+```
+
 ### Weather location
 
 Create `~/.config/polybar/weather.conf` with your coordinates:
@@ -85,6 +103,10 @@ WEATHER_LON=-3.7026
 
 If the file does not exist, the polybar weather module defaults to Madrid.
 Coordinates can be found at [open-meteo.com](https://open-meteo.com).
+
+## Guides
+
+- [VPN setup (WireGuard + polybar module)](docs/vpn-setup.md)
 
 ## Structure
 
