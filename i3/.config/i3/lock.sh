@@ -1,53 +1,52 @@
 #!/bin/bash
 
-TEXT_PRIMARY="e6edf3ff"
-TEXT_SECONDARY="8b949eff"
-RING_COLOR="21262daa"
-RING_VER_COLOR="3fb950ff"
-RING_WRONG_COLOR="f85149ff"
-KEYHL_COLOR="58a6ffff"
-BSHL_COLOR="da3633ff"
-INSIDE_COLOR="0d111700"
-LINE_COLOR="00000000"
+TEXT_PRIMARY="ffffffff"
+TEXT_SECONDARY="ffffff88"
+
+RING_IDLE="ffffff1a"
+RING_VER="3fb950ff"
+RING_WRONG="f85149ff"
+KEYHL="64b5f6ff"
+BSHL="8b949eff"
+
+INSIDE="00000000"
+INSIDE_VER="1a3a2200"
+INSIDE_WRONG="3d0f0e00"
+
+LINE="00000000"
 
 i3lock \
-  --blur=9 \
+  --blur=10 \
   --clock \
   --force-clock \
   --indicator \
   --no-modkey-text \
   \
-  --time-str="%H:%M" \
+  --time-str="%I:%M %p" \
   --time-color="$TEXT_PRIMARY" \
-  --time-size=96 \
+  --time-size=108 \
   --time-font="JetBrainsMono Nerd Font" \
-  --time-pos="x+w/2:y+h/2-100" \
+  --time-pos="x+w/2:y+h/2-80" \
   \
   --date-str="%A, %d %B %Y" \
   --date-color="$TEXT_SECONDARY" \
-  --date-size=16 \
+  --date-size=17 \
   --date-font="JetBrainsMono Nerd Font" \
-  --date-pos="x+w/2:y+h/2-52" \
+  --date-pos="x+w/2:y+h/2-16" \
   \
-  --greeter-text="Introduce tu contraseña" \
-  --greeter-color="$TEXT_SECONDARY" \
-  --greeter-size=13 \
-  --greeter-font="JetBrainsMono Nerd Font" \
-  --greeter-pos="x+w/2:y+h/2+148" \
-  \
-  --ind-pos="x+w/2:y+h/2+70" \
-  --radius=36 \
-  --ring-width=4.0 \
-  --ring-color="$RING_COLOR" \
-  --ringver-color="$RING_VER_COLOR" \
-  --ringwrong-color="$RING_WRONG_COLOR" \
-  --keyhl-color="$KEYHL_COLOR" \
-  --bshl-color="$BSHL_COLOR" \
-  --inside-color="$INSIDE_COLOR" \
-  --insidever-color="$INSIDE_COLOR" \
-  --insidewrong-color="$INSIDE_COLOR" \
-  --line-color="$LINE_COLOR" \
-  --separator-color="$LINE_COLOR" \
+  --ind-pos="x+w/2:y+h/2+95" \
+  --radius=42 \
+  --ring-width=4.5 \
+  --ring-color="$RING_IDLE" \
+  --ringver-color="$RING_VER" \
+  --ringwrong-color="$RING_WRONG" \
+  --keyhl-color="$KEYHL" \
+  --bshl-color="$BSHL" \
+  --inside-color="$INSIDE" \
+  --insidever-color="$INSIDE_VER" \
+  --insidewrong-color="$INSIDE_WRONG" \
+  --line-color="$LINE" \
+  --separator-color="$LINE" \
   \
   --verif-text="" \
   --wrong-text="" \

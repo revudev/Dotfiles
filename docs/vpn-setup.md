@@ -33,14 +33,23 @@ sudo systemctl restart NetworkManager
 
 ## 3. Configure passwordless sudo for WireGuard
 
+> **Important:** The polybar VPN module runs `sudo wg show interfaces` every 5 seconds
+> without a terminal. Without this rule, PAM will log a failed auth attempt each time,
+> and after ~50 failures `pam_faillock` will lock your account — breaking **all** sudo
+> commands. The `install.sh` script sets this up automatically.
+
+Create `/etc/sudoers.d/polybar-wireguard` with the following (replace `your_user`):
+
 ```bash
-EDITOR=nano sudo visudo /etc/sudoers.d/wireguard
+printf 'your_user ALL=(ALL) NOPASSWD: /usr/bin/wg show interfaces\nyour_user ALL=(ALL) NOPASSWD: /usr/bin/wg-quick up *\nyour_user ALL=(ALL) NOPASSWD: /usr/bin/wg-quick down *\nyour_user ALL=(ALL) NOPASSWD: /usr/bin/find /etc/wireguard -name *.conf\n' | sudo tee /etc/sudoers.d/polybar-wireguard
+sudo chmod 440 /etc/sudoers.d/polybar-wireguard
+sudo visudo -c -f /etc/sudoers.d/polybar-wireguard
 ```
 
-Add (replace `your_user` with your actual username):
+If your account gets locked before you set this up, unlock it with:
 
-```
-your_user ALL=(ALL) NOPASSWD: /usr/bin/wg, /usr/bin/wg-quick, /usr/bin/find /etc/wireguard -name *.conf
+```bash
+sudo faillock --user your_user --reset
 ```
 
 ## 4. Add VPN profiles

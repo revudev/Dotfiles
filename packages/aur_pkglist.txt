@@ -1,5 +1,7 @@
 antigravity
+tokyonight-gtk-theme-git
 betterlockscreen
+i3lock-color
 brave-bin
 claude-code
 visual-studio-code-bin

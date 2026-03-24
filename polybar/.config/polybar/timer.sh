@@ -6,7 +6,7 @@ DURATION=7200
 
 show() {
     if [ ! -f "$STATE_FILE" ]; then
-        echo "%{F${TIMER_COLOR}}󱎫 2:00:00%{F-}"
+        echo "%{T2}%{F${TIMER_COLOR}}󱎫%{F-}%{T-} 2:00:00"
         exit 0
     fi
 
@@ -18,7 +18,7 @@ show() {
         rm -f "$STATE_FILE"
         dunstify -u critical -i dialog-information -t 0 \
             "󱎫 Temporizador" "¡Toma un descanso! Llevas 2 horas trabajando."
-        echo "%{F${TIMER_COLOR}}󱎫 2:00:00%{F-}"
+        echo "%{T2}%{F${TIMER_COLOR}}󱎫%{F-}%{T-} 2:00:00"
         exit 0
     fi
 
@@ -26,7 +26,7 @@ show() {
     M=$(( (REMAINING % 3600) / 60 ))
     S=$(( REMAINING % 60 ))
 
-    printf "%%{F${TIMER_COLOR}}󱎫 %d:%02d:%02d%%{F-}\n" "$H" "$M" "$S"
+    printf "%%{T2}%%{F${TIMER_COLOR}}󱎫%%{F-}%%{T-} %d:%02d:%02d\n" "$H" "$M" "$S"
 }
 
 toggle() {

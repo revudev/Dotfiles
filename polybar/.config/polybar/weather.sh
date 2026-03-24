@@ -49,4 +49,4 @@ case "$CODE" in
     ;;
 esac
 
-echo "${ICON}${TEMP}°C"
+echo "%{T2}${ICON}%{T-}${TEMP}°C"

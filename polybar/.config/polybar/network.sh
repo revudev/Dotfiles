@@ -7,13 +7,13 @@ WIFI_IF=$(ip -br link show | awk '/^wl/ && / UP /{print $1; exit}')
 ETH_IF=$(ip -br link show | awk '/^(en|eth)/ && / UP /{print $1; exit}')
 
 if [[ -n "$WIFI_IF" ]]; then
-  ICON="󰤨"
+  ICON="%{T2}󰤨%{T-}"
   IF="$WIFI_IF"
 elif [[ -n "$ETH_IF" ]]; then
-  ICON="󰈀"
+  ICON="%{T2}󰈀%{T-}"
   IF="$ETH_IF"
 else
-  echo "%{F#707880}󰤭%{F-}"
+  echo "%{T2}%{F#707880}󰤭%{F-}%{T-}"
   exit 0
 fi
 
