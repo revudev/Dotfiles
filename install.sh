@@ -30,9 +30,27 @@ mkdir -p "$HOME/.oh-my-zsh/custom/plugins"
 ln -sf /usr/share/zsh/plugins/zsh-syntax-highlighting "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 ln -sf /usr/share/zsh/plugins/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 
+echo "Backing up conflicting dotfiles..."
+BACKUP_STAMP=$(date +%Y%m%d_%H%M%S)
+for f in "$HOME/.zshrc" "$HOME/.config/i3/config"; do
+  if [ -e "$f" ] && [ ! -L "$f" ]; then
+    mv -v "$f" "${f}.bak_${BACKUP_STAMP}"
+  fi
+done
+
 echo "Stowing dotfiles..."
 cd "$DOTFILES_DIR"
-stow i3 kitty polybar picom dunst rofi fontconfig betterlockscreen zsh gtk wallpaper autostart brave
+stow i3 kitty polybar picom dunst rofi fontconfig betterlockscreen zsh gtk wallpaper autostart brave nvim
+
+echo "Deploying Firefox user.js to all profiles..."
+FIREFOX_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/mozilla/firefox"
+if [ -f "$DOTFILES_DIR/firefox/user.js" ] && [ -d "$FIREFOX_DIR" ]; then
+  while IFS= read -r profile_dir; do
+    cp -v "$DOTFILES_DIR/firefox/user.js" "$profile_dir/user.js"
+  done < <(find "$FIREFOX_DIR" -maxdepth 1 -mindepth 1 -type d ! -name "Crash Reports" ! -name "Pending Pings" ! -name "Profile Groups")
+else
+  echo "No Firefox profiles found, skipping."
+fi
 
 echo ""
 echo "=== Weather module ==="

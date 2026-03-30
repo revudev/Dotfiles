@@ -17,9 +17,7 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id thunar --daemon
 exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/lock.sh
 bindsym $mod+ctrl+l exec --no-startup-id ~/.config/i3/lock.sh
-bindsym $mod+shift+v exec copyq toggle
 exec --no-startup-id blueman-applet
-exec --no-startup-id copyq
 exec --no-startup-id sleep 3 && /etc/acpi/lid.sh
 exec --no-startup-id dunst
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -69,18 +67,28 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-bindsym Mod3+j workspace number $ws1
-bindsym Mod3+k workspace number $ws2
-bindsym Mod3+l workspace number $ws3
-bindsym Mod3+semicolon workspace number $ws4
-bindsym Mod3+m workspace number $ws5
-bindsym Mod3+comma workspace number $ws6
+bindsym Mod3+j exec brave
+bindsym Mod3+k exec firefox
+bindsym Mod3+l exec code
+bindsym Mod3+Return exec kitty
+bindsym Mod3+n exec thunar
+bindsym Mod3+m exec kitty -e btop
+bindsym Mod3+s workspace number $ws1
+bindsym Mod3+d workspace number $ws2
+bindsym Mod3+f workspace number $ws3
+bindsym Mod3+g workspace number $ws4
+bindsym Mod3+e workspace number $ws5
+bindsym Mod3+r workspace number $ws6
+bindsym Mod3+x workspace number $ws7
+bindsym Mod3+c workspace number $ws8
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
 bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym Print exec maim -s | xclip -selection clipboard -t image/png
 bindsym Shift+Delete exec --no-startup-id flameshot gui
 bindsym $mod+Shift+c reload

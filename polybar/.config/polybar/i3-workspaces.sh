@@ -4,18 +4,18 @@ COLOR_FOCUSED="#81a2be"
 COLOR_UNFOCUSED="#c5c8c6"
 COLOR_EMPTY="#444444"
 
-ICONS=("" "" "" "" "" "" "")
+ICONS=("" "" "" "" "" "" "" "" "")
 
 update_workspaces() {
   local ws_json=$(i3-msg -t get_workspaces)
   local out=""
 
-  for i in {1..6}; do
+  for i in {1..8}; do
     local is_focused=$(echo "$ws_json" | jq -e ".[] | select(.num == $i and .focused == true)" > /dev/null && echo "true" || echo "false")
     local exists=$(echo "$ws_json" | jq -e ".[] | select(.num == $i)" > /dev/null && echo "true" || echo "false")
     local icon="${ICONS[$i]}"
 
-    if [ "$i" -eq 5 ]; then
+    if [ "$i" -eq 5 ] || [ "$i" -eq 7 ]; then
       out+="%{F${COLOR_UNFOCUSED}}|  %{F-}"
     fi
     

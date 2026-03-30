@@ -17,6 +17,7 @@ alias ls='eza --color=always --group-directories-first --icons'
 alias ll='eza -la --color=always --group-directories-first --icons'
 alias la='eza -a --color=always --group-directories-first --icons'
 alias lt='eza -aT --color=always --group-directories-first --icons --level=2'
+compdef _eza ls
 
 alias cat='bat'
 
@@ -61,6 +62,9 @@ clipl() { kitty @ get-text --extent last_cmd_output | wl-copy }
 alias clip='wl-copy'
 alias x='exit'
 
+eval "$(zoxide init zsh --cmd cd)"
+chpwd() { ls }
+
 alias vps='ssh deru'
 
 alias reload='source ~/.zshrc'
@@ -77,5 +81,26 @@ fi
 export PATH="$HOME/.npm-global/bin:$PATH"
 
 copilot() { gh copilot "$@"; }
+function rr() {
+  if [ -z "$1" ]; then
+    echo "Debes proporcionar el nombre de la rama"
+    return 1
+  fi
+  branch_name=$1
+ 
+  git stash drop || true
+  git fetch origin
+  git stash
+ 
+  if git show-ref --verify --quiet "refs/heads/$branch_name" || git show-ref --verify --quiet "refs/remotes/origin/$branch_name"; then
+    git checkout "$branch_name"
+  else
+    echo "La rama '$branch_name' no existe. Creándola..."
+    git checkout -b "$branch_name"
+  fi
+ 
+  git stash pop
+}
+
 
 . "$HOME/.local/bin/env"

@@ -6,8 +6,9 @@ base-devel
 blueman
 bat
 btop
-copyq
 dex
+docker
+docker-compose
 dmenu
 dunst
 eza
@@ -45,6 +46,7 @@ linux-headers
 lxappearance
 maim
 nano
+neovim
 network-manager-applet
 networkmanager
 noto-fonts-emoji
@@ -89,6 +91,7 @@ xorg-xset
 xss-lock
 xterm
 yazi
+zoxide
 zram-generator
 zsh
 zsh-autosuggestions

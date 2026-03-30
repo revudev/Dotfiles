@@ -1,4 +1,5 @@
 antigravity
+lazydocker
 tokyonight-gtk-theme-git
 betterlockscreen
 i3lock-color
