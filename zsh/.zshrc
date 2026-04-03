@@ -56,6 +56,9 @@ alias gp='git push'
 alias gl='git log --oneline --graph --decorate --all'
 alias copi='GITHUB_TOKEN='' copilot'
 alias cla='codemie-claude'
+alias yi='yarn install && yarn dev'
+alias pi='pnpm install && pnpm dev'
+alias ni='npm install && npm run dev'
 
 clipf() { wl-copy < "$1" }
 clipl() { kitty @ get-text --extent last_cmd_output | wl-copy }
@@ -64,6 +67,41 @@ alias x='exit'
 
 eval "$(zoxide init zsh --cmd cd)"
 chpwd() { ls }
+
+_dir_icon() {
+  case "$PWD" in
+    "$HOME")                printf $'\uf015' ;;
+    "$HOME/.config"*)       printf $'\uf013' ;;
+    "$HOME/Dotfiles"*)      printf $'\uf0ad' ;;
+    "$HOME/Documents/mm"*)  printf $'\uf0b1' ;;
+    "$HOME/Documents/dev"*) printf $'\uf120' ;;
+    *)                      printf $'\uf07b' ;;
+  esac
+}
+
+_prompt_dir() {
+  local icon rel
+  case "$PWD" in
+    "$HOME")                printf $'\uf015'" ~"; return ;;
+    "$HOME/.config"*)       icon=$'\uf013'; rel="${PWD#$HOME/.config}" ;;
+    "$HOME/Dotfiles"*)      icon=$'\uf0ad'; rel="${PWD#$HOME/Dotfiles}" ;;
+    "$HOME/Documents/mm"*)  icon=$'\uf120'; rel="${PWD#$HOME/Documents/mm}" ;;
+    "$HOME/Documents/dev"*) icon=$'\uf0b1'; rel="${PWD#$HOME/Documents/dev}" ;;
+    "$HOME"*)               icon=$'\uf07b'; rel="${PWD#$HOME}" ;;
+    *)                      icon=$'\uf07b'; rel="$PWD" ;;
+  esac
+  rel="${rel#/}"
+  [[ -z "$rel" ]] && rel="${PWD##*/}"
+  printf "%s  %s" "$icon" "$rel"
+}
+
+_set_tab_title() {
+  local dir="${PWD/#$HOME/~}"
+  printf "\033]0;$(_dir_icon) %s\007" "$dir"
+}
+
+precmd_functions+=(_set_tab_title)
+chpwd_functions+=(_set_tab_title)
 
 alias vps='ssh deru'
 
