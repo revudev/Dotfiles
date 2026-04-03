@@ -109,7 +109,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 workspace_layout default
-exec_always --no-startup-id xmodmap ~/.Xmodmap
+exec_always --no-startup-id setxkbmap -option caps:hyper
 exec_always --no-startup-id xset led off
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf 
 exec_always --no-startup-id ~/.config/polybar/launch.sh 
